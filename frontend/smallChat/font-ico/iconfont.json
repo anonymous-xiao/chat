@@ -1,0 +1,23 @@
+{
+  "id": "3158187",
+  "name": "smallChat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6550621",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "11594440",
+      "name": "发现",
+      "font_class": "faxian",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    }
+  ]
+}

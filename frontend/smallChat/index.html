@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<link href="css/header.css" rel="stylesheet"/>
+	<link href="font-ico/iconfont.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+		mui.plusReady(function(){
+			plus.navigator.setStatusBarBackground("#54D96C");
+			plus.navigator.setStatusBarStyle("light");
+		})
+    </script>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav title">
+	 	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	 	<h1 class="mui-title title-color"><b>仿信</b></h1>
+	 </header>
+	 
+	 <nav class="mui-bar mui-bar-tab">
+	 	<a class="mui-tab-item mui-active" tabindex="0">
+	 		<span class="mui-icon iconfont icon-weixin"></span>
+	 		<span class="mui-tab-label">仿信</span>
+	 	</a>
+	 	<a class="mui-tab-item" tabindex="1">
+	 		<span class="mui-icon mui-icon-contact"></span>
+	 		<span class="mui-tab-label">通讯录</span>
+	 	</a>
+	 	<a class="mui-tab-item"tabindex="2">
+	 		<span class="mui-icon iconfont icon-faxian"></span>
+	 		<span class="mui-tab-label">发现</span>
+	 	</a>
+	 	<a class="mui-tab-item" tabindex="3">
+	 		<span class="mui-icon mui-icon-person"></span>
+	 		<span class="mui-tab-label">我</span>
+	 	</a>
+	 </nav>
+	 
+	 <script type="text/javascript">
+	 debugger;
+		var chatArray = [{
+			"pageId":"chatlist.html",
+			"pageUrl":"chatlist.html"
+		},
+		{
+			"pageId":"contact.html",
+			"pageUrl":"contact.html"
+		},
+		{
+			"pageId":"discover.html",
+			"pageUrl":"discover.html"
+		},
+		{
+			"pageId":"mine.html",
+			"pageUrl":"mine.html"
+		}];
+		
+		var chatSytle = {
+			top:"44px",
+			bottom:"85px"
+		}
+		
+		mui.plusReady(function(){
+			var indexWebView = plus.webview.currentWebview();
+			//向当前
+			for (var i = 0;i< chatArray.length;i++) {
+				var chatPage = plus.webview.create(chatArray[i].pageUrl,chatArray[i].pageId,chatSytle);
+				chatPage.hide();//隐藏webview窗口
+				indexWebView.append(chatPage);//追加每个子页面到当前主页面
+			}
+			plus.webview.show(chatArray[0].pageId);
+			
+			//批量绑定tab事件 展示不同的页面
+			mui(".mui-bar-tab").on("tap","a",function(){
+				var tabindex = this.getAttribute("tabindex");
+				//显示点击tab选项所对应的页面
+				plus.webview.show(chatArray[tabindex].pageId,"fade-in",200);
+				//隐藏其他不需要的页面
+				for(var i=0 ;i < charArray.length;i++){
+					if(i!= tabindex) {
+						plus.webview.hide(chatArray[i].pageId,"fade-out",200);
+					}
+				}
+			})
+		})
+	 
+	 
+	 </script>
+</body>
+</html>
